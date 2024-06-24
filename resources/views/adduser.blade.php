@@ -51,40 +51,79 @@
                                         <div class="col-md-6 col-lg-6">
                                             <x-forms.input value="" label="Name" type="text"
                                                 placeholder="Enter Your Full Name" name="name" />
-                                                <small class="text-danger">
+                                            <small class="text-danger">
 
                                                 @error('name')
-                                                {{ $message }}
-                                            @enderror</small>
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
                                         </div>
                                         <div class="col-md-6 col-lg-6">
-                                            <x-forms.input value="" label="Email" type="email" placeholder="Enter Your Email"
-                                                name="email" />
-                                                <small class="text-danger">
+                                            <x-forms.input value="" label="Email" type="email"
+                                                placeholder="Enter Your Email" name="email" />
+                                            <small class="text-danger">
 
                                                 @error('email')
-                                                {{ $message }}
-                                            @enderror</small>
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 col-lg-6">
-                                            <x-forms.input value="" label="Age" type="text" placeholder="Enter Your Age"
-                                                name="age" />
-                                                <small class="text-danger">
+                                            <x-forms.input value="" label="Age" type="text"
+                                                placeholder="Enter Your Age" name="age" />
+                                            <small class="text-danger">
                                                 @error('age')
-                                                {{ $message }}
-                                            @enderror</small>
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
                                         </div>
-                                        <div class="col-md-6 col-lg-6">
-                                            <x-forms.input value="" label="City" type="text" placeholder="Enter Your City"
-                                                name="city" />
-                                                <small class="text-danger">
+                                        <div class="col-md-6 ">
+                                            <select name="address_id"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            id="address_id">
+                                            @foreach ($country as $c)
+                                                 <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <small class="text-danger">
 
-                                                @error('city')
+                                            @error('address_id')
                                                 {{ $message }}
-                                            @enderror</small>
+                                            @enderror
+                                        </small>
+                                            <select name="address_id"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            id="address_id">
+                                            @foreach ($state as $c)
+                                            
+                                                 <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <small class="text-danger">
+
+                                            @error('address_id')
+                                                {{ $message }}
+                                            @enderror
+                                        </small>
+                                            <select name="address_id"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                id="address_id">
+                                                @foreach ($city as $c)
+                                                     <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <small class="text-danger">
+
+                                                @error('address_id')
+                                                    {{ $message }}
+                                                @enderror
+                                            </small>
+
+
                                         </div>
+
                                     </div>
                                     <div class="row">
                                         <x-button name="Add" color="primary" />

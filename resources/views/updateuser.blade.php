@@ -1,4 +1,4 @@
-updateuser    <x-layout>
+updateuser <x-layout>
     <div class="container">
         <div class="page-inner">
             <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
@@ -29,7 +29,7 @@ updateuser    <x-layout>
 
 
                                 <li class="nav-item">
-                                    <a href="#">{{$employees->id}}</a>
+                                    <a href="#">{{ $employees->id }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -44,48 +44,56 @@ updateuser    <x-layout>
                         <div class="card-header">
                             <div class="card-title">Add new User</div>
                         </div>
-                        <form action="{{ route('employee.update',$employees->id) }}" method="post">
+                        <form action="{{ route('employee.update', $employees->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6">
-                                        <x-forms.input label="Name" value="{{$employees->name}}" type="text"
+                                        <x-forms.input label="Name" value="{{ $employees->name }}" type="text"
                                             placeholder="Enter Your Full Name" name="name" />
-                                            <small class="text-danger">
+                                        <small class="text-danger">
 
                                             @error('name')
-                                            {{ $message }}
-                                        @enderror</small>
+                                                {{ $message }}
+                                            @enderror
+                                        </small>
                                     </div>
                                     <div class="col-md-6 col-lg-6">
-                                        <x-forms.input value="{{$employees->email}}"  label="Email" type="email" placeholder="Enter Your Email"
-                                            name="email" />
-                                            <small class="text-danger">
+                                        <x-forms.input value="{{ $employees->email }}" label="Email" type="email"
+                                            placeholder="Enter Your Email" name="email" />
+                                        <small class="text-danger">
 
                                             @error('email')
-                                            {{ $message }}
-                                        @enderror</small>
+                                                {{ $message }}
+                                            @enderror
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6">
-                                        <x-forms.input label="Age" type="text" value="{{$employees->age}}"  placeholder="Enter Your Age"
-                                            name="age" />
-                                            <small class="text-danger">
+                                        <x-forms.input label="Age" type="text" value="{{ $employees->age }}"
+                                            placeholder="Enter Your Age" name="age" />
+                                        <small class="text-danger">
                                             @error('age')
-                                            {{ $message }}
-                                        @enderror</small>
+                                                {{ $message }}
+                                            @enderror
+                                        </small>
                                     </div>
-                                    <div class="col-md-6 col-lg-6">
-                                        <x-forms.input label="City" type="text" value="{{$employees->city}}"  placeholder="Enter Your City"
-                                            name="city" />
-                                            <small class="text-danger">
+                                    {{-- <div class="col-md-6 col-lg-6">
+                                        <select name="address_id" id="address_id">
+                                             @foreach ($city as $c)
+                                                <option value="{{ $c->id }}">{{ $c->city }}</option>
+                                            @endforeach
+                                        </select>
 
-                                            @error('city')
-                                            {{ $message }}
-                                        @enderror</small>
-                                    </div>
+                                        <small class="text-danger">
+
+                                            @error('address_id')
+                                                {{ $message }}
+                                            @enderror
+                                        </small>
+                                    </div> --}}
                                 </div>
                                 <div class="row">
                                     <x-button name="Update" color="warning" />

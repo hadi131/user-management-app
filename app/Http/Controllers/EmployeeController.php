@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Employee;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,18 +18,15 @@ class EmployeeController extends Controller
     {
         $count = Employee::get()->count();
         $search = $req->search;
+        $employees = Employee::with('address');
+
         if ($search != '') {
-
-
-            $employees = Employee::where('name', 'LIKE', "%$search%")->orWhere('email', 'LIKE', "%$search%")->orWhere('id', 'LIKE', "%$search%")->get();;
-
-            return view('index', compact('employees','count'));
-        } else {
-
-            $employees = Employee::orderBy('id', 'DESC')->get();
-
-            return view('index', compact('employees','count'));
+            $employees = $employees->where('name', 'LIKE', "%$search%")->orWhere('email', 'LIKE', "%$search%")->orWhere('id', 'LIKE', "%$search%");
         }
+
+        $employees = $employees->orderBy('id', 'DESC')->get();
+
+        return view('index', compact('employees', 'count'));
     }
 
     /**
@@ -33,7 +34,11 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('adduser');
+        $city = City::all();
+        $country = Country::all();
+        $state = State::all();
+        return view('adduser', compact('city','country','state'));
+
     }
 
     /**
@@ -41,13 +46,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required | email',
-            'city' => 'required',
-            'age' => 'required'
+
+        $employees = Employee::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'age' => $request->age,
+            'address_id' => $request->address_id
         ]);
-        $employees = Employee::create($data);
+
         if ($employees) {
 
             return redirect()->route('employee.index')->with('status', 'User Added Successfully');
@@ -80,9 +86,9 @@ class EmployeeController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required | email',
-            'city' => 'required',
             'age' => 'required'
         ]);
+
         $employees = Employee::where('id', $employee)->update($data);
         if ($employees) {
 
@@ -97,6 +103,8 @@ class EmployeeController extends Controller
     {
         $employees = Employee::find($employee);
         $employees->delete();
+        // $address=Address::Where('employee_id',$employee);
+        // $address->delete();
         if ($employees) {
             return redirect()->route('employee.index')->with('status', 'User Deleted Successfully');
         }

@@ -42,6 +42,27 @@
                         </a>
 
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('city.index') }}">
+                            <i class="fas fa-pen-square"></i>
+                            <p>Cities</p>
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('country.index') }}">
+                            <i class="fas fa-pen-square"></i>
+                            <p>Countries</p>
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('state.index') }}">
+                            <i class="fas fa-pen-square"></i>
+                            <p>States</p>
+                        </a>
+
+                    </li>
 
 
 

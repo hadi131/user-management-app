@@ -6,7 +6,7 @@
                     <h3 class="fw-bold mb-3">Dashboard</h3>
                 </div>
                 <div class="ms-md-auto py-2 py-md-0">
-                    <a href="{{ route('employee.create') }}" class="btn btn-primary btn-round">Add User</a>
+                    <a href="{{ route('state.create') }}" class="btn btn-primary btn-round">Add State</a>
                 </div>
             </div>
             <div class="row">
@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="col col-stats ms-3 ms-sm-0">
                                     <div class="numbers">
-                                        <p class="card-category">Total Users Registered</p>
+                                        <p class="card-category">Total States Registered</p>
                                         <h4 class="card-title">{{ $count }}</h4>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
 
 
                                 <li class="nav-item">
-                                    <a href="#">All Users</a>
+                                    <a href="#">All States</a>
                                 </li>
                             </ul>
                         </div>
@@ -58,7 +58,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">All Users</h4>
+                                        <h4 class="card-title">All States</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -67,31 +67,26 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#ID</th>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th>City</th>
+
+                                                        <th>State</th>
+                                                        <th>Country</th>
 
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                    @foreach ($employees as $employee)
+                                                    @foreach ($states as $state)
                                                         <tr>
-                                                            <td>{{ $employee->id }}</td>
-                                                            <td>{{ $employee->name }}</td>
-                                                            <td>{{ $employee->email }}</td>
-                                                            <td>{{ $employee->address->city ?? '' }}</td>
+                                                            <td>{{ $state->id }}</td>
+                                                            <td>{{ $state->name }}</td>
+                                                            <td>{{ $state->country->name ?? '' }}</td>
                                                             <div class="flex">
 
-                                                                <td>
 
-                                                                    <x-link name="View" color="primary"
-                                                                        ref="{{ route('employee.show', $employee->id) }}" />
-                                                                </td>
 
                                                                 <td>
                                                                     <form
-                                                                        action="{{ route('employee.destroy', $employee->id) }}"
+                                                                        action="{{ route('state.destroy', $state->id) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -99,12 +94,12 @@
 
                                                                     </form>
                                                                 </td>
-                                                                <td>
+                                                                {{-- <td>
 
                                                                     <x-link name="Update" color="warning"
-                                                                        ref="{{ route('employee.edit', $employee->id) }}" />
+                                                                        ref="{{ route('state.edit', $state->id) }}" />
 
-                                                                </td>
+                                                                </td> --}}
 
                                                             </div>
                                                         </tr>
